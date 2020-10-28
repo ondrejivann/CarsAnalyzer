@@ -6,9 +6,20 @@
 //
 
 #include <iostream>
+#include <opencv2/opencv.hpp>
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+    
+    cv::VideoCapture videoCapture(0);
+    if (!videoCapture.isOpened()) {
+        return -1;
+    }
+    
+    for (;;) {
+        cv::Mat frame;
+        videoCapture >> frame;
+        cv::imshow("Camera Stream", frame);
+        if (cv::waitKey(30) >= 0) break;
+    }
     return 0;
 }
