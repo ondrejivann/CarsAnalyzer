@@ -7,19 +7,12 @@
 
 #include <iostream>
 #include <opencv2/opencv.hpp>
+#include "Engine.hpp"
 
 int main(int argc, const char * argv[]) {
     
-    cv::VideoCapture videoCapture(0);
-    if (!videoCapture.isOpened()) {
-        return -1;
-    }
+    Engine engine = Engine();
+    engine.run();
     
-    for (;;) {
-        cv::Mat frame;
-        videoCapture >> frame;
-        cv::imshow("Camera Stream", frame);
-        if (cv::waitKey(30) >= 0) break;
-    }
     return 0;
 }
