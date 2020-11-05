@@ -12,6 +12,8 @@
 #include <opencv2/videoio.hpp>
 #include <opencv2/imgproc.hpp>
 #include <opencv2/highgui.hpp>
+#include <chrono>
+#include <ctime>
 #include <string>
 #include "ColorTracker.hpp"
 #include "ObjectIsolator.hpp"
@@ -30,19 +32,25 @@ private:
     cv::Size windowSize;
     int m_numOfLesnickaDirectionCar;
     int m_numOfPionyrskaDirectionCar;
+    int m_numOfWhiteCar;
     std::vector<Stain> m_existingStain;
-    bool firstFrame;
     void captureCameraFrame();
     void showReports(cv::Mat &frame, std::vector<std::string> &reports);
     double distanceBetweenPoints(cv::Point point1, cv::Point point2);
     void currentStainsToExistingStains(std::vector<Stain> currentStains, std::vector<Stain> &existingStains);
     bool stainsCrossedTheLine(std::vector<Stain> &stains, int horizontalLinePosition, int verticalLinePosition, int &numOfLesnickaDirectionCar, int &numOfPionyrskaDirectionCar);
+    int m_horizontalLine;
+    int m_verticalLine;
+    long int getUnixTimestamp();
     
     /*
      Izolace pohybujiciho se objektu
      */
-    ObjectIsolator objectIsolator;
+    ObjectIsolator m_objectIsolator;
     
+    /*
+     Trakovani barev
+     */
     ColorTracker colorTracker;
     
 };

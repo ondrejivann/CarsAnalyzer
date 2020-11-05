@@ -16,10 +16,11 @@ cv::Mat ColorTracker::preprocessImage(cv::Mat image) {
     cv::Mat hsvImage;
     // změna barevného prostoru z BGR do HSV (Hue, Saturation, Value)
     cv::cvtColor(image, hsvImage, cv::COLOR_BGR2HSV);
-    // metoda pro izolati konkrétní barvy v obraze. Používáte se ve spojení s barevným modelem HSV
-    auto sensitivity = 60;
-    cv::inRange(hsvImage, cv::Scalar(0,0,255-sensitivity), cv::Scalar(200, sensitivity, 255), preprocessedImage);
     
+    // metoda pro izolati konkrétní barvy v obraze. Používáte se ve spojení s barevným modelem HSV
+    auto sensitivity = 20;
+    cv::inRange(hsvImage, cv::Scalar(0,0,255-sensitivity), cv::Scalar(200, sensitivity, 255), preprocessedImage);
+
     // Erosion - Snaží se odstranit objekty na pozadí - scvrknout stávající objekt na menší bez šumu v okolí. Odřízne pixely šumu
     // Dilation - Opak erosion, snaží se objekt vyhladit tím, že ho rozšíří. Tam kde je šum přidá pixely objektu
     // Kombinací těchto dvou operací vznikají další morphologické operace - otevření a zavření
@@ -31,8 +32,8 @@ cv::Mat ColorTracker::preprocessImage(cv::Mat image) {
     
     // zavření (dilate-erode)
     // Zavření dír v objektu
-    cv::dilate(preprocessedImage, preprocessedImage, cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(7,7)));
-    cv::erode(preprocessedImage, preprocessedImage, cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(7,7)));
+    cv::dilate(preprocessedImage, preprocessedImage, cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(5,5)));
+    cv::erode(preprocessedImage, preprocessedImage, cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(5,5)));
     
     return preprocessedImage;
 }

@@ -12,47 +12,41 @@ Engine::Engine() {
     windowSize = cv::Size(1000,750);
     m_numOfLesnickaDirectionCar = 0;
     m_numOfPionyrskaDirectionCar = 0;
+    m_numOfWhiteCar = 0;
+    m_horizontalLine = windowSize.height * 0.75;
+    m_verticalLine = windowSize.width *  0.63;
 }
 
 void Engine::run() {
-    
     for (;;) {
         std::vector<std::string> reports;
-        int horizontalLine = windowSize.height * 0.8;
-        int verticalLine = windowSize.width *  0.63;
         captureCameraFrame();
-        
-        /*
         cv::Mat whiteColorImage = colorTracker.preprocessImage(cameraFrame);
         
-        cv::imshow("White color", whiteColorImage);
-        
-        std::vector<Stain> whiteStains = objectIsolator.getObjects(whiteColorImage, 2500);
-        
-        for (auto car: whiteStains){
-            cv::rectangle(cameraFrame, car.m_boudingBox, cv::Scalar(0,255,0));
-        }
-        */
-        
-        std::vector<Stain> currentStains = objectIsolator.getObjects(cameraFrame, 3000);
+        std::vector<Stain> currentStains = m_objectIsolator.getObjects(cameraFrame, 1000);
         
         for (auto car: currentStains){
-            cv::rectangle(cameraFrame, car.m_boudingBox, cv::Scalar(0,255,0));
+            cv::rectangle(cameraFrame, car.m_boudingBox, cv::Scalar(200,10,10), 2);
         }
         
         currentStainsToExistingStains(currentStains, m_existingStain);
-        bool stainCrossedTheLine = stainsCrossedTheLine(m_existingStain, horizontalLine, verticalLine, m_numOfLesnickaDirectionCar, m_numOfPionyrskaDirectionCar);
+        bool stainCrossedTheLine = stainsCrossedTheLine(m_existingStain, m_horizontalLine, m_verticalLine, m_numOfLesnickaDirectionCar, m_numOfPionyrskaDirectionCar);
         
         if (stainCrossedTheLine) {
-            cv::line(cameraFrame, cv::Point(0, horizontalLine), cv::Point(windowSize.width, horizontalLine), cv::Scalar(0,0,200), 2);
+            cv::line(cameraFrame, cv::Point(0, m_horizontalLine), cv::Point(windowSize.width, m_horizontalLine), cv::Scalar(0,0,200), 2);
         } else {
-            cv::line(cameraFrame, cv::Point(0, horizontalLine), cv::Point(windowSize.width, horizontalLine), cv::Scalar(0,200,0), 2);
+            cv::line(cameraFrame, cv::Point(0, m_horizontalLine), cv::Point(windowSize.width, m_horizontalLine), cv::Scalar(0,200,0), 2);
         }
         
         reports.push_back("Smer Lesnicka: " + std::to_string(m_numOfLesnickaDirectionCar));
         reports.push_back("Smer Pionyrska: " + std::to_string(m_numOfPionyrskaDirectionCar));
-         
-         
+        
+        
+        for (auto car: m_existingStain){
+            cv::rectangle(cameraFrame, car.m_boudingBox, cv::Scalar(200,200,10), 2);
+        }
+        
+        
         showReports(cameraFrame, reports);
         
         cv::imshow("Car counter", cameraFrame);
@@ -102,7 +96,7 @@ void Engine::currentStainsToExistingStains(std::vector<Stain> currentStains, std
                 intIndexOfLeastDistance = i;
             }
         }
-        if (dblLeastDistance < 75.0) {
+        if (dblLeastDistance < 100) {
             existingStains.at(intIndexOfLeastDistance).m_boudingBox = currentStain.m_boudingBox;
             existingStains.at(intIndexOfLeastDistance).m_center = currentStain.m_center;
             existingStains.at(intIndexOfLeastDistance).m_diagonal = sqrt(pow(currentStain.m_boudingBox.width, 2) + pow(currentStain.m_boudingBox.height, 2));
@@ -134,6 +128,13 @@ void Engine::showReports(cv::Mat &frame, std::vector<std::string> &reports){
                     1);
         firstReportHeight += 25;
     }
+}
+
+long int Engine::getUnixTimestamp()
+{
+    time_t t = std::time(0);
+    long int now = static_cast<long int> (t);
+    return now;
 }
 
 Engine::~Engine() {
