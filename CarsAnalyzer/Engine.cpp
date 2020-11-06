@@ -51,7 +51,7 @@ void Engine::run() {
         for (auto car: m_existingStain){
             //cv::rectangle(cameraFrame, car.m_boudingBox, cv::Scalar(10,10,200), 2);
             
-            for (auto carHistory: stainsHistory) {
+            for (auto carHistory: m_existingStainHistory) {
                 if (car.m_center.x == carHistory.m_center.x && carHistory.m_center.y == car.m_center.y) {
                     car.m_center.x = 0;
                     car.m_center.y = 0;
