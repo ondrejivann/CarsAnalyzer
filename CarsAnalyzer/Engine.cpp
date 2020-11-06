@@ -132,15 +132,12 @@ void Engine::currentStainsToExistingStains(std::vector<Stain> currentStains, std
         double dblLeastDistance = 100000.0;
         
         for (unsigned int i = 0; i < existingStains.size(); i++) {
-            if (existingStains.at(i).m_ignore == false) {
-                double dblDistance = distanceBetweenPoints(currentStain.m_center, existingStains[i].m_center);
-                if (dblDistance < dblLeastDistance) {
-                    dblLeastDistance = dblDistance;
-                    intIndexOfLeastDistance = i;
-                }
+            double dblDistance = distanceBetweenPoints(currentStain.m_center, existingStains[i].m_center);
+            if (dblDistance < dblLeastDistance) {
+                dblLeastDistance = dblDistance;
+                intIndexOfLeastDistance = i;
             }
         }
-
         if (dblLeastDistance < 100) {
             existingStains.at(intIndexOfLeastDistance).m_boudingBox = currentStain.m_boudingBox;
             existingStains.at(intIndexOfLeastDistance).m_center_history = existingStains.at(intIndexOfLeastDistance).m_center;
