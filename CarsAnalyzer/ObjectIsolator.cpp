@@ -41,6 +41,7 @@ std::vector<Stain> ObjectIsolator::getObjects(cv::Mat image, int minContourArea)
             //cv::convexHull(polygon, polygonConvexHull);
             //contoursToPush.push_back(polygonConvexHull);
             Stain stain = Stain(polygon);
+            stain.m_timeStampCurrent = getUnixTimestamp();
             currentStains.push_back(stain);
         }
     }
@@ -55,5 +56,16 @@ std::vector<Stain> ObjectIsolator::getObjects(cv::Mat image, int minContourArea)
     cv::imshow("Contour", imageDraw);
     
     return currentStains;
+}
+
+long int ObjectIsolator::getUnixTimestamp()
+{
+    std::chrono::milliseconds ms = std::chrono::duration_cast< std::chrono::milliseconds > (
+        std::chrono::system_clock::now().time_since_epoch()
+    );
+    return ms.count();
+    //time_t t = std::time(0);
+    //long int now = static_cast<long int> (t);
+    //return now;
 }
 

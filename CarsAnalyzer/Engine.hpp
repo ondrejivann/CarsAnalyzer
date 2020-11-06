@@ -15,8 +15,11 @@
 #include <chrono>
 #include <ctime>
 #include <string>
+#include <algorithm>
+#include <numeric>
 #include "ColorTracker.hpp"
 #include "ObjectIsolator.hpp"
+#include "ObjectTracker.hpp"
 #include "Stain.hpp"
 
 class Engine {
@@ -33,7 +36,10 @@ private:
     int m_numOfLesnickaDirectionCar;
     int m_numOfPionyrskaDirectionCar;
     int m_numOfWhiteCar;
+    int m_avgSpeed;
+    std::vector<int> m_speeds;
     std::vector<Stain> m_existingStain;
+    std::vector<Stain> m_existingStainHistory;
     void captureCameraFrame();
     void showReports(cv::Mat &frame, std::vector<std::string> &reports);
     double distanceBetweenPoints(cv::Point point1, cv::Point point2);
@@ -42,6 +48,8 @@ private:
     int m_horizontalLine;
     int m_verticalLine;
     long int getUnixTimestamp();
+    int getCarSpeed(int startY, int currentY, long int timeStampStart, long int timeStampCurrent);
+
     
     /*
      Izolace pohybujiciho se objektu
@@ -52,6 +60,11 @@ private:
      Trakovani barev
      */
     ColorTracker colorTracker;
+    
+    /*
+     Trackovani objektu
+     */
+    ObjectTracker objectTracker;
     
 };
 

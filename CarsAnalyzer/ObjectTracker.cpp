@@ -13,7 +13,7 @@ ObjectTracker::ObjectTracker() {
 
 std::vector<cv::Point2f> ObjectTracker::getFeatures(cv::Mat image) {
     std::vector<cv::Point2f> points;
-    //cv::cvtColor(image, image, cv::COLOR_BGR2GRAY);
+    cv::cvtColor(image, image, cv::COLOR_BGR2GRAY);
     cv::goodFeaturesToTrack(image, points, 1000, 0.01, 25);
     
     return points;

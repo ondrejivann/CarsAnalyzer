@@ -10,8 +10,8 @@
 
 #include <stdio.h>
 #include <opencv2/opencv.hpp>
-#include "ObjectTracker.hpp"
 #include "Stain.hpp"
+#include <chrono>
 
 class ObjectIsolator {
 private:
@@ -27,6 +27,7 @@ private:
 public:
     ObjectIsolator();
     std::vector<Stain> getObjects(cv::Mat image, int minContourArea);
+    long int getUnixTimestamp();
 };
 
 #endif /* ObjectIsolator_hpp */

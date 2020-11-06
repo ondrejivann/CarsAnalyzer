@@ -19,10 +19,14 @@ public:
     cv::Point m_center;
     double m_diagonal;
     bool m_stillBeingTracked;
+    bool m_speedStillBeingTracked;
     std::vector<cv::Point> m_polygon;
-    std::vector<cv::Point> m_center_history;
-    long int m_startTime;
-    long int m_endTime;
+    cv::Point m_center_history;
+    long int m_timeStampStart;
+    long int m_timeStampEnd;
+    long int m_timeStampCurrent;
+    cv::Point m_pointStart;
+    cv::Point m_pointEnd;
     double m_speed;
 };
 
