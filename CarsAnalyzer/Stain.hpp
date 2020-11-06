@@ -20,6 +20,7 @@ public:
     double m_diagonal;
     bool m_stillBeingTracked;
     bool m_speedStillBeingTracked;
+    bool m_ignore;
     std::vector<cv::Point> m_polygon;
     cv::Point m_center_history;
     long int m_timeStampStart;
