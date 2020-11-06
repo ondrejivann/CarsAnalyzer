@@ -28,6 +28,17 @@ void Engine::run() {
             cv::rectangle(cameraFrame, car.m_boudingBox, cv::Scalar(200,10,10), 2);
         }
         
+        currentStainsToExistingStains(currentStains, m_existingStain);
+        bool stainCrossedTheLine = stainsCrossedTheLine(m_existingStain, m_horizontalLine, m_verticalLine, m_numOfLesnickaDirectionCar, m_numOfPionyrskaDirectionCar);
+        
+        if (stainCrossedTheLine) {
+            cv::line(cameraFrame, cv::Point(0, m_horizontalLine), cv::Point(windowSize.width, m_horizontalLine), cv::Scalar(0,0,200), 2);
+        } else {
+            cv::line(cameraFrame, cv::Point(0, m_horizontalLine), cv::Point(windowSize.width, m_horizontalLine), cv::Scalar(0,200,0), 2);
+        }
+        
+        cv::line(cameraFrame, cv::Point(0, windowSize.height*0.4), cv::Point(windowSize.width, windowSize.height*0.4), cv::Scalar(0,200,0), 2);
+        
         for(auto it = m_existingStain.begin(); it != m_existingStain.end(); it++) {
             for (auto carHistory: m_existingStainHistory) {
                 if (it->m_center.x == carHistory.m_center.x
@@ -47,24 +58,16 @@ void Engine::run() {
         for (auto car: m_existingStain){
             m_existingStainHistory.push_back(car);
         }
-
-        currentStainsToExistingStains(currentStains, m_existingStain);
-        bool stainCrossedTheLine = stainsCrossedTheLine(m_existingStain, m_horizontalLine, m_verticalLine, m_numOfLesnickaDirectionCar, m_numOfPionyrskaDirectionCar);
-        
-        if (stainCrossedTheLine) {
-            cv::line(cameraFrame, cv::Point(0, m_horizontalLine), cv::Point(windowSize.width, m_horizontalLine), cv::Scalar(0,0,200), 2);
-        } else {
-            cv::line(cameraFrame, cv::Point(0, m_horizontalLine), cv::Point(windowSize.width, m_horizontalLine), cv::Scalar(0,200,0), 2);
-        }
-        
-        cv::line(cameraFrame, cv::Point(0, windowSize.height*0.4), cv::Point(windowSize.width, windowSize.height*0.4), cv::Scalar(0,200,0), 2);
         
         reports.push_back("Smer Lesnicka: " + std::to_string(m_numOfLesnickaDirectionCar));
         reports.push_back("Smer Pionyrska: " + std::to_string(m_numOfPionyrskaDirectionCar));
 
+        double avgSpeed = 0.0;
         if (m_speeds.size() > 0) {
-            reports.push_back("Prumerna rychlost: " + std::to_string(std::accumulate(m_speeds.begin(), m_speeds.end(), 0)/m_speeds.size()) + " km/h");
+            avgSpeed = std::accumulate(m_speeds.begin(), m_speeds.end(), 0)/m_speeds.size();
         }
+        
+        reports.push_back("Prumerna rychlost: " + std::to_string((int)avgSpeed) + " km/h");
         
         showReports(cameraFrame, reports);
         
@@ -167,11 +170,11 @@ double Engine::distanceBetweenPoints(cv::Point point1, cv::Point point2){
 void Engine::showReports(cv::Mat &frame, std::vector<std::string> &reports){
     cv::Mat overlay;
     frame.copyTo(overlay);
-    cv::rectangle(overlay, cv::Point(730,20), cv::Point(980, 250), cv::Scalar(0,0,0), -1);
+    cv::rectangle(overlay, cv::Point(700,20), cv::Point(980, 250), cv::Scalar(0,0,0), -1);
     cv::addWeighted(overlay, 0.5, frame, 1 - 0.5, 0, frame);
     int firstReportHeight = 45;
     for (auto report: reports) {
-        cv::putText(frame, report, cv::Point(750, firstReportHeight),
+        cv::putText(frame, report, cv::Point(720, firstReportHeight),
                     cv::FONT_HERSHEY_SIMPLEX,
                     0.5,
                     CV_RGB(255, 255, 255),

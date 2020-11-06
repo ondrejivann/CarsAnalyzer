@@ -36,7 +36,6 @@ private:
     int m_numOfLesnickaDirectionCar;
     int m_numOfPionyrskaDirectionCar;
     int m_numOfWhiteCar;
-    int m_avgSpeed;
     std::vector<int> m_speeds;
     std::vector<Stain> m_existingStain;
     std::vector<Stain> m_existingStainHistory;

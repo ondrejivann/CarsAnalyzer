@@ -14,7 +14,6 @@ Stain::Stain(std::vector<cv::Point> polygon) {
     m_diagonal = sqrt(pow(m_boudingBox.width, 2) + pow(m_boudingBox.height, 2));
     m_stillBeingTracked = true;
     m_speedStillBeingTracked = true;
-    m_ignore = false;
     m_timeStampStart = -1;
     m_timeStampEnd = -1;
     m_speed = -1.0;
