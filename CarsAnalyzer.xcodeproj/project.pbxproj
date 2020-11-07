@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		72598E61254D6819005E8093 /* ColorTracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72598E5F254D6819005E8093 /* ColorTracker.cpp */; };
 		72598E65254DAB13005E8093 /* ObjectIsolator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72598E63254DAB13005E8093 /* ObjectIsolator.cpp */; };
-		7274A36A254EDD8F000D9B55 /* ObjectTracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7274A368254EDD8F000D9B55 /* ObjectTracker.cpp */; };
 		7274A36E254EF9E6000D9B55 /* Stain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7274A36C254EF9E6000D9B55 /* Stain.cpp */; };
 		72E20FD82549A62A00D51789 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72E20FD72549A62A00D51789 /* main.cpp */; };
 		72E210152549A75D00D51789 /* libopencv_ximgproc.4.5.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 72E20FDF2549A75B00D51789 /* libopencv_ximgproc.4.5.0.dylib */; };
@@ -82,12 +80,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		72598E5F254D6819005E8093 /* ColorTracker.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ColorTracker.cpp; sourceTree = "<group>"; };
-		72598E60254D6819005E8093 /* ColorTracker.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ColorTracker.hpp; sourceTree = "<group>"; };
 		72598E63254DAB13005E8093 /* ObjectIsolator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectIsolator.cpp; sourceTree = "<group>"; };
 		72598E64254DAB13005E8093 /* ObjectIsolator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ObjectIsolator.hpp; sourceTree = "<group>"; };
-		7274A368254EDD8F000D9B55 /* ObjectTracker.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectTracker.cpp; sourceTree = "<group>"; };
-		7274A369254EDD8F000D9B55 /* ObjectTracker.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ObjectTracker.hpp; sourceTree = "<group>"; };
 		7274A36C254EF9E6000D9B55 /* Stain.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Stain.cpp; sourceTree = "<group>"; };
 		7274A36D254EF9E6000D9B55 /* Stain.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Stain.hpp; sourceTree = "<group>"; };
 		72E20FD42549A62A00D51789 /* CarsAnalyzer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CarsAnalyzer; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -293,12 +287,8 @@
 				72E20FD72549A62A00D51789 /* main.cpp */,
 				72E2104E2549BABE00D51789 /* Engine.cpp */,
 				72E2104F2549BABE00D51789 /* Engine.hpp */,
-				72598E5F254D6819005E8093 /* ColorTracker.cpp */,
-				72598E60254D6819005E8093 /* ColorTracker.hpp */,
 				72598E63254DAB13005E8093 /* ObjectIsolator.cpp */,
 				72598E64254DAB13005E8093 /* ObjectIsolator.hpp */,
-				7274A368254EDD8F000D9B55 /* ObjectTracker.cpp */,
-				7274A369254EDD8F000D9B55 /* ObjectTracker.hpp */,
 				7274A36C254EF9E6000D9B55 /* Stain.cpp */,
 				7274A36D254EF9E6000D9B55 /* Stain.hpp */,
 			);
@@ -361,8 +351,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				72598E61254D6819005E8093 /* ColorTracker.cpp in Sources */,
-				7274A36A254EDD8F000D9B55 /* ObjectTracker.cpp in Sources */,
 				72E20FD82549A62A00D51789 /* main.cpp in Sources */,
 				72E210502549BABE00D51789 /* Engine.cpp in Sources */,
 				72598E65254DAB13005E8093 /* ObjectIsolator.cpp in Sources */,

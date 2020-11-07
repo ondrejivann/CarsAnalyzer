@@ -16,8 +16,10 @@
 class ObjectIsolator {
 private:
     cv::Ptr<cv::BackgroundSubtractor> backgroundSubtractor;
+    cv::Ptr<cv::BackgroundSubtractor> backgroundSubtractorWhite;
     cv::Size m_windowSize;
-    
+    bool isStainWhite(cv::Mat frame, cv::Mat bgSubtractionFrame, Stain stain);
+
     const cv::Mat structuringElement3x3 = cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(3, 3));
     const cv::Mat structuringElement5x5 = cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(5, 5));
     const cv::Mat structuringElement7x7 = cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(7, 7));

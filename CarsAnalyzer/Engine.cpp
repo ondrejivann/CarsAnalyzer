@@ -8,7 +8,8 @@
 #include "Engine.hpp"
 
 Engine::Engine() {
-    videoCap.open(filePath);
+    videoCap.open("video_pro_analyzu.mp4");
+    //videoCap.set(cv::CAP_PROP_POS_FRAMES, 1550);
     windowSize = cv::Size(1000,750);
     m_numOfLesnickaDirectionCar = 0;
     m_numOfPionyrskaDirectionCar = 0;
@@ -68,6 +69,7 @@ void Engine::run() {
         }
         
         reports.push_back("Prumerna rychlost: " + std::to_string((int)avgSpeed) + " km/h");
+        reports.push_back("Pocet bilych aut: " + std::to_string(m_numOfWhiteCar));
         
         showReports(cameraFrame, reports);
         
@@ -95,6 +97,9 @@ bool Engine::stainsCrossedTheLine(std::vector<Stain> &stains, int horizontalLine
                 numOfPionyrskaDirectionCar++;
                 stains.at(i).m_stillBeingTracked = false;
                 carCrossedTheLine = true;
+                if (stains.at(i).m_isWhite) {
+                    m_numOfWhiteCar++;
+                }
             // Bude počítat auta směrem na Lesnickou (pravá část)
             } else if (stains.at(i).m_center.x > verticalLinePosition && stains.at(i).m_center.y < horizontalLinePosition) {
                 numOfLesnickaDirectionCar++;
@@ -103,6 +108,11 @@ bool Engine::stainsCrossedTheLine(std::vector<Stain> &stains, int horizontalLine
                 // pocatecni bod a cas pro mereni rychlosti
                 stains.at(i).m_timeStampStart = getUnixTimestamp();
                 stains.at(i).m_pointStart = stains.at(i).m_center;
+                
+                if (stains.at(i).m_isWhite) {
+                    m_numOfWhiteCar++;
+                }
+                
             }
         }
  
@@ -121,7 +131,9 @@ bool Engine::stainsCrossedTheLine(std::vector<Stain> &stains, int horizontalLine
                 if (v > 15.0) {
                     m_speeds.push_back(v);
                 }
-                
+                if (stains.at(i).m_isWhite) {
+                    m_numOfWhiteCar++;
+                }
                 stains.at(i).m_speedStillBeingTracked = false;
             }
         }
@@ -147,6 +159,9 @@ void Engine::currentStainsToExistingStains(std::vector<Stain> currentStains, std
             existingStains.at(intIndexOfLeastDistance).m_center = currentStain.m_center;
             existingStains.at(intIndexOfLeastDistance).m_timeStampCurrent = currentStain.m_timeStampCurrent;
             existingStains.at(intIndexOfLeastDistance).m_diagonal = sqrt(pow(currentStain.m_boudingBox.width, 2) + pow(currentStain.m_boudingBox.height, 2));
+            if (currentStain.m_isWhite == true) {
+                existingStains.at(intIndexOfLeastDistance).m_isWhite = true;
+            }
         } else {
             if (currentStain.m_center.y > windowSize.height * 0.35
                 && currentStain.m_center.y <= windowSize.height * 0.75
@@ -193,7 +208,7 @@ long int Engine::getUnixTimestamp()
 
 int Engine::getCarSpeed(int startY, int currentY, long int timeStampStart, long int timeStampCurrent) {
     double k1 = (0.75 - (startY / (double) windowSize.height))/(0.75 - 0.35);
-    double s1 = 35 - k1 * 35;
+    double s1 = 40 - k1 * 40;
     
     double k2 = ((startY - currentY) / (double)windowSize.height) / ((startY / (double)windowSize.height) - 0.35);
     double s2 = k2 * s1;

@@ -17,16 +17,13 @@
 #include <string>
 #include <algorithm>
 #include <numeric>
-#include "ColorTracker.hpp"
 #include "ObjectIsolator.hpp"
-#include "ObjectTracker.hpp"
 #include "Stain.hpp"
 
 class Engine {
 public:
     Engine();
     void run();
-    const std::string filePath = "/Users/ondrejivan/Documents/School/LVR/Project_1/CarsAnalyzer/video_pro_analyzu.mp4";
     ~Engine();
     
 private:
@@ -48,22 +45,11 @@ private:
     int m_verticalLine;
     long int getUnixTimestamp();
     int getCarSpeed(int startY, int currentY, long int timeStampStart, long int timeStampCurrent);
-
     
     /*
      Izolace pohybujiciho se objektu
      */
     ObjectIsolator m_objectIsolator;
-    
-    /*
-     Trakovani barev
-     */
-    ColorTracker colorTracker;
-    
-    /*
-     Trackovani objektu
-     */
-    ObjectTracker objectTracker;
     
 };
 
