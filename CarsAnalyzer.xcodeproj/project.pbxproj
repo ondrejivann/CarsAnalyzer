@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		72598E65254DAB13005E8093 /* ObjectIsolator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72598E63254DAB13005E8093 /* ObjectIsolator.cpp */; };
+		7274A36E254EF9E6000D9B55 /* Stain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7274A36C254EF9E6000D9B55 /* Stain.cpp */; };
 		72E20FD82549A62A00D51789 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72E20FD72549A62A00D51789 /* main.cpp */; };
 		72E210152549A75D00D51789 /* libopencv_ximgproc.4.5.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 72E20FDF2549A75B00D51789 /* libopencv_ximgproc.4.5.0.dylib */; };
 		72E210162549A75D00D51789 /* libopencv_rapid.4.5.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 72E20FE02549A75B00D51789 /* libopencv_rapid.4.5.0.dylib */; };
@@ -62,6 +64,7 @@
 		72E210482549A76200D51789 /* libopencv_text.4.5.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 72E210122549A75D00D51789 /* libopencv_text.4.5.0.dylib */; };
 		72E210492549A76300D51789 /* libopencv_imgcodecs.4.5.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 72E210132549A75D00D51789 /* libopencv_imgcodecs.4.5.0.dylib */; };
 		72E2104A2549A76300D51789 /* libopencv_freetype.4.5.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 72E210142549A75D00D51789 /* libopencv_freetype.4.5.0.dylib */; };
+		72E210502549BABE00D51789 /* Engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72E2104E2549BABE00D51789 /* Engine.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -77,6 +80,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		72598E63254DAB13005E8093 /* ObjectIsolator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectIsolator.cpp; sourceTree = "<group>"; };
+		72598E64254DAB13005E8093 /* ObjectIsolator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ObjectIsolator.hpp; sourceTree = "<group>"; };
+		7274A36C254EF9E6000D9B55 /* Stain.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Stain.cpp; sourceTree = "<group>"; };
+		7274A36D254EF9E6000D9B55 /* Stain.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Stain.hpp; sourceTree = "<group>"; };
 		72E20FD42549A62A00D51789 /* CarsAnalyzer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CarsAnalyzer; sourceTree = BUILT_PRODUCTS_DIR; };
 		72E20FD72549A62A00D51789 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		72E20FDF2549A75B00D51789 /* libopencv_ximgproc.4.5.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_ximgproc.4.5.0.dylib; path = ../../../../../../../usr/local/Cellar/opencv/4.5.0/lib/libopencv_ximgproc.4.5.0.dylib; sourceTree = "<group>"; };
@@ -133,6 +140,9 @@
 		72E210122549A75D00D51789 /* libopencv_text.4.5.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_text.4.5.0.dylib; path = ../../../../../../../usr/local/Cellar/opencv/4.5.0/lib/libopencv_text.4.5.0.dylib; sourceTree = "<group>"; };
 		72E210132549A75D00D51789 /* libopencv_imgcodecs.4.5.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_imgcodecs.4.5.0.dylib; path = ../../../../../../../usr/local/Cellar/opencv/4.5.0/lib/libopencv_imgcodecs.4.5.0.dylib; sourceTree = "<group>"; };
 		72E210142549A75D00D51789 /* libopencv_freetype.4.5.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_freetype.4.5.0.dylib; path = ../../../../../../../usr/local/Cellar/opencv/4.5.0/lib/libopencv_freetype.4.5.0.dylib; sourceTree = "<group>"; };
+		72E2104C2549B71800D51789 /* video_pro_analyzu.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video_pro_analyzu.mp4; sourceTree = "<group>"; };
+		72E2104E2549BABE00D51789 /* Engine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Engine.cpp; sourceTree = "<group>"; };
+		72E2104F2549BABE00D51789 /* Engine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Engine.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +213,7 @@
 		72E20FCB2549A62A00D51789 = {
 			isa = PBXGroup;
 			children = (
+				72E2104C2549B71800D51789 /* video_pro_analyzu.mp4 */,
 				72E210082549A75C00D51789 /* libopencv_alphamat.4.5.0.dylib */,
 				72E20FE72549A75B00D51789 /* libopencv_aruco.4.5.0.dylib */,
 				72E20FEA2549A75B00D51789 /* libopencv_bgsegm.4.5.0.dylib */,
@@ -274,6 +285,12 @@
 			isa = PBXGroup;
 			children = (
 				72E20FD72549A62A00D51789 /* main.cpp */,
+				72E2104E2549BABE00D51789 /* Engine.cpp */,
+				72E2104F2549BABE00D51789 /* Engine.hpp */,
+				72598E63254DAB13005E8093 /* ObjectIsolator.cpp */,
+				72598E64254DAB13005E8093 /* ObjectIsolator.hpp */,
+				7274A36C254EF9E6000D9B55 /* Stain.cpp */,
+				7274A36D254EF9E6000D9B55 /* Stain.hpp */,
 			);
 			path = CarsAnalyzer;
 			sourceTree = "<group>";
@@ -335,6 +352,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				72E20FD82549A62A00D51789 /* main.cpp in Sources */,
+				72E210502549BABE00D51789 /* Engine.cpp in Sources */,
+				72598E65254DAB13005E8093 /* ObjectIsolator.cpp in Sources */,
+				7274A36E254EF9E6000D9B55 /* Stain.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
